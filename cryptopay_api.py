@@ -58,8 +58,6 @@ def create_button(price, currency=None, name=None):
 	return basic_request(req_path, args_dict, True, "POST")
 
 
-
-
 if __name__ == "__main__":
 	res = create_button(100, "GBP", "lol")
 	print(res)
