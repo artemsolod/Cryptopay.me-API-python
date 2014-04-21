@@ -5,7 +5,7 @@ from json import loads
 
 
 
-YOUR_API_KEY = ""
+YOUR_API_KEY = "c91336d748a4f1dc6589c1653bf6be37"
 
 url = "cryptopay.me"
 
@@ -49,11 +49,17 @@ def list_invoices(page_number=1, per_page=20, from_time=None, to_time=None):
 	req_path = "/invoices/"
 	return basic_request(req_path, with_token=True, req_type="GET")
 
+def create_button(price, currency=None, name=None):
+	args_dict = {}
+	args_dict['price'] = price
+	args_dict['currency'] = currency
+	args_dict['name'] = name
+	req_path = "/buttons"
+	return basic_request(req_path, args_dict, True, "POST")
+
+
+
 
 if __name__ == "__main__":
-	# res = create_invoice(100, description="Test")
-	# res = requote("19c80fd8-8401-45f3-83f0-33f48c0091ed")
-	res = list_invoices()
+	res = create_button(100, "GBP", "lol")
 	print(res)
-# 07e13fce-ff9c-4ccb-b34d-8e26562e4b46
-# {u'status': u'pending', u'btc_price': u'0.2805', u'valid_till': 1397926143, u'callback_url': None, u'success_redirect_url': None, u'uuid': u'19c80fd8-8401-45f3-83f0-33f48c0091ed', u'short_id': u'19C80FD8', u'confirmations_count': 1, u'url': u'http://cryptopay.me/orders/19c80fd8-8401-45f3-83f0-33f48c0091ed/d', u'price': 100.0, u'currency': u'EUR', u'callback_params': None, u'bitcoin_uri': u'bitcoin:1ARVioYH5cxwFYffmNmNkWEfzmbcGxN6k4?amount=0.2805', u'created_at': 1397925543, u'btc_address': u'1ARVioYH5cxwFYffmNmNkWEfzmbcGxN6k4', u'id': None, u'description': u'Test'}
