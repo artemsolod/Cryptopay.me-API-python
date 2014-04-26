@@ -1,8 +1,8 @@
 from __future__ import print_function
 import httplib
+import hashlib
 from urllib import urlencode
 from json import loads, dumps
-
 
 
 YOUR_API_KEY = ""
@@ -61,6 +61,12 @@ def create_hosted(items, **kwargs):
 	kwargs['items'] = items
 	req_path = "/hosted"
 	return basic_request(req_path, kwargs, True, "POST")
+
+def validate_hash(uuid, price, currency, test_hash):
+	to_check = YOUR_API_KEY + '_' + uuid + '_' + str(int(price*100)) + currency
+	computed_hash = hashlib.sha256(to_check).hexdigest()
+	return (computed_hash == test_hash)
+
 
 
 if __name__ == "__main__":
