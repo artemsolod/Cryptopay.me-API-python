@@ -5,7 +5,7 @@ from urllib import urlencode
 from json import loads, dumps
 
 
-YOUR_API_KEY = ""
+YOUR_API_KEY = "eef25fc83eedf44e02f61cd5371ff730"
 
 url = "cryptopay.me"
 
@@ -18,7 +18,7 @@ def basic_request(req_path, args_dict={}, with_token=False, req_type="GET"):
 	if (200 <= response.status < 300):
 		return loads(response.read())
 	else:
-		return "Server Error Code: " + str(response.read()) # str(response.status)
+		return "Server Error " + str(response.status) + ": " + str(response.read()) 
 
 
 def get_balance():
